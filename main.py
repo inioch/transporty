@@ -1,4 +1,4 @@
-import pandas as pd
+from pandas import DataFrame
 import csv
 import tkinter as tk
 from tkinter import filedialog, messagebox
@@ -44,10 +44,10 @@ class App:
 
             # Jeśli istnieje tabela "A", zapisujemy ją do pliku
             if "A" in tables:
-                df_a = pd.DataFrame(tables["A"])
+                df_a = DataFrame(tables["A"])
 
                 # Usuwanie cudzysłowów z komórek
-                df_a = df_a.applymap(lambda x: str(x) if isinstance(x, (int, float)) else x)
+                df_a = df_a.map(lambda x: str(x) if isinstance(x, (int, float)) else x)
                 # Zapisz dane do pliku CSV bez cudzysłowów
                 df_a.to_csv("A_clean.csv", index=False, header=False, encoding='utf-8', sep=';')
             else:
